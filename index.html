@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form</title>
+  <style>
+    .btn{
+      margin: 20px 200px;
+      background: rgb(211, 234, 183);
+    }
+    .form-label{
+      margin: 20px 20px;
+    }
+    .form-control{
+      margin: 7px 7px;
+    }
+  </style>
+</head>
+
+<body>
+  <h2><u>Forms:- </u> </h2>
+  <form name="google-sheet">
+    <form class="row g-3">
+      <div class="col-md-6">
+        <label for="inputEmail4" class="form-label">First Name :</label>
+        <input type="text" class="form-control" name="First Name" id="inputEmail4">
+      </div>
+      <div class="col-md-6">
+        <label for="inputPassword4" class="form-label">Last Name : </label>
+        <input type="text" class="form-control" name="Last Name" id="inputPassword4"><br>
+
+        <button class="btn btn-primary" name="submit">Submit</button>
+      </div>
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbwwoW9GG4f0x48XAiIkSFNdUd5f9HY3I8mBgK1jPRv_dd0KJBK19JLVIuN_NpJB74-Tlw/exec'
+      const form = document.forms['google-sheet']
+
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+          .then(response => console.log('Success!', response))
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
+</body>
+
+</html>
